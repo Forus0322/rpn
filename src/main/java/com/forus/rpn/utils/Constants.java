@@ -2,7 +2,7 @@ package com.forus.rpn.utils;
 
 public class Constants {
 
-    public class Operator {
+    public class Operation {
         
         public static final String ADDITION = "+";
 

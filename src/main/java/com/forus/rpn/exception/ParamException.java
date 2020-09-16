@@ -1,5 +1,9 @@
 package com.forus.rpn.exception;
 
+/**
+ * 参数异常
+ * 当操作参数不合法时抛出该异常（如分母为0）
+ */
 public class ParamException extends Exception {
 
     /**

@@ -10,8 +10,10 @@ import org.apache.commons.lang3.math.NumberUtils;
  */
 public final class CalculatorUtils {
 
+    //使用DecimalFormat调整输出结果格式
     private static final DecimalFormat FORMATOR = new DecimalFormat("##########.##########");
     static {
+        //设置截取规则（不要四舍五入，直接截断）
         FORMATOR.setRoundingMode(RoundingMode.FLOOR);
     }
 
@@ -22,7 +24,16 @@ public final class CalculatorUtils {
         return NumberUtils.isNumber(str);
     }
 
+    /**
+     * 通过计算精度的方式，判断输入数是否为整数
+     * 
+     * @param number
+     * @return
+     */
     public static boolean isInteger(double number) {
+        //设置精度0.0000000001
+        //如：1.0000000001不是整数
+        //如：1.00000000009是整数
         double precision = Math.pow(10, -10);
         return number - Math.floor(number) < precision;
     }

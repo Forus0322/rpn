@@ -4,29 +4,25 @@ import java.util.Collections;
 import java.util.List;
 
 import com.forus.rpn.calc.ICalculator;
-import com.forus.rpn.calc.IRPNCalculator;
-import com.forus.rpn.exception.OperatorException;
+import com.forus.rpn.calc.RPNOperator;
+import com.forus.rpn.exception.OperationException;
 import com.forus.rpn.exception.ParamException;
 import com.forus.rpn.exception.RPNException;
-import com.forus.rpn.model.RpnModel;
 import com.forus.rpn.utils.CalculatorUtils;
 import com.forus.rpn.utils.Constants;
 import com.google.common.collect.Lists;
 
 /**
- * RPN计算器实现类，不对外暴露
- * 仅通过IRPNCalculator使用
+ * RPN计算器实现类，不对外暴露，仅通过RPNOperator使用
  */
-class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
-
-    private RpnModel model = new RpnModel();
+class RPNOperatorImpl extends RPNOperator implements ICalculator {
 
     @Override
     public double addition(double n, double m) {
         return n + m;
     }
 
-    private void addition() throws OperatorException {
+    private void addition() throws OperationException {
         if (model.getNumStack().size() > 1) {
             double m = model.getNumStack().pop();
             double n = model.getNumStack().pop();
@@ -36,7 +32,7 @@ class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
 
             logHistory(n, m);
         } else {
-            throw new OperatorException("+");
+            throw new OperationException("+");
         }
     }
 
@@ -45,7 +41,7 @@ class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
         return n - m;
     }
 
-    private void subtraction() throws OperatorException {
+    private void subtraction() throws OperationException {
         if (model.getNumStack().size() > 1) {
             double m = model.getNumStack().pop();
             double n = model.getNumStack().pop();
@@ -55,7 +51,7 @@ class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
 
             logHistory(n, m);
         } else {
-            throw new OperatorException("-");
+            throw new OperationException("-");
         }
     }
 
@@ -64,7 +60,7 @@ class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
         return n * m;
     }
 
-    private void multiplication() throws OperatorException {
+    private void multiplication() throws OperationException {
         if (model.getNumStack().size() > 1) {
             double m = model.getNumStack().pop();
             double n = model.getNumStack().pop();
@@ -74,7 +70,7 @@ class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
 
             logHistory(n, m);
         } else {
-            throw new OperatorException("*");
+            throw new OperationException("*");
         }
     }
 
@@ -83,7 +79,7 @@ class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
         return n / m;
     }
 
-    private void division() throws OperatorException, ParamException {
+    private void division() throws OperationException, ParamException {
         if (model.getNumStack().size() > 1) {
             double m = model.getNumStack().pop();
             double n = model.getNumStack().pop();
@@ -96,7 +92,7 @@ class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
                 throw new ParamException("The denominator can't be 0.");
             }
         } else {
-            throw new OperatorException("/");
+            throw new OperationException("/");
         }
     }
 
@@ -105,7 +101,7 @@ class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
         return Math.sqrt(n);
     }
 
-    private void sqrt() throws OperatorException {
+    private void sqrt() throws OperationException {
         if (model.getNumStack().size() > 0) {
             double n = model.getNumStack().pop();
             double r = sqrt(n);
@@ -113,7 +109,7 @@ class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
 
             logHistory(n);
         } else {
-            throw new OperatorException("sqrt");
+            throw new OperationException("sqrt");
         }
     }
 
@@ -129,7 +125,7 @@ class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
             } else {
                 try {
                     calc(character);
-                } catch (OperatorException e) {
+                } catch (OperationException e) {
                     String operator = e.getMessage();
                     throw new RPNException(
                             "Operator " + operator + " (position: " + position + "): insucient parameters");
@@ -164,27 +160,27 @@ class RPNCalculatorImpl implements IRPNCalculator, ICalculator {
         return CalculatorUtils.display(model.getNumStack());
     }
 
-    private void calc(String operator) throws OperatorException, ParamException {
+    private void calc(String operator) throws OperationException, ParamException {
         switch (operator) {
-            case Constants.Operator.ADDITION:
+            case Constants.Operation.ADDITION:
                 addition();
                 break;
-            case Constants.Operator.SUBTRACTION:
+            case Constants.Operation.SUBTRACTION:
                 subtraction();
                 break;
-            case Constants.Operator.MULTIPLICATION:
+            case Constants.Operation.MULTIPLICATION:
                 multiplication();
                 break;
-            case Constants.Operator.DIVISION:
+            case Constants.Operation.DIVISION:
                 division();
                 break;
-            case Constants.Operator.SQRT:
+            case Constants.Operation.SQRT:
                 sqrt();
                 break;
-            case Constants.Operator.UNDO:
+            case Constants.Operation.UNDO:
                 undo();
                 break;
-            case Constants.Operator.CLEAR:
+            case Constants.Operation.CLEAR:
                 clear();
                 break;
             default:

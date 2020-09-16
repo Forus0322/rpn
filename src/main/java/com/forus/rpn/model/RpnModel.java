@@ -9,7 +9,7 @@ import lombok.Data;
 public class RpnModel {
     
     /**
-     * 记录当前计算结果
+     * 记录输入栈元素，以及计算结果元素（当遇到操作符时）
      */
     private Stack<Double> numStack = new Stack<>();
 

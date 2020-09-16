@@ -1,7 +1,8 @@
 package com.forus.rpn.calc;
 
 /**
- * 定义通用计算器基本操作
+ * 通用计算器接口
+ * 定义计算器基本操作
  */
 public interface ICalculator {
     

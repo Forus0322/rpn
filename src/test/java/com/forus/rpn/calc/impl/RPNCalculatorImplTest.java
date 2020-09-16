@@ -2,7 +2,7 @@ package com.forus.rpn.calc.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.forus.rpn.calc.IRPNCalculator;
+import com.forus.rpn.calc.RPNOperator;
 import com.forus.rpn.exception.RPNException;
 
 import org.junit.jupiter.api.Test;
@@ -13,7 +13,7 @@ public class RPNCalculatorImplTest {
     void testExample1() throws RPNException {
         String expression = "5 2";
 
-        IRPNCalculator calculator = CalculatorFactory.getInstance().createRPNCalculator();
+        RPNOperator calculator = CalculatorFactory.getInstance().createRPNCalculator();
         calculator.calcRpn(expression);
 
         String result = calculator.result();
@@ -24,7 +24,7 @@ public class RPNCalculatorImplTest {
     void testExample2() throws RPNException {
         String expression = "2 sqrt";
 
-        IRPNCalculator calculator = CalculatorFactory.getInstance().createRPNCalculator();
+        RPNOperator calculator = CalculatorFactory.getInstance().createRPNCalculator();
         calculator.calcRpn(expression);
 
         String result = calculator.result();
@@ -43,7 +43,7 @@ public class RPNCalculatorImplTest {
     void testExample3() throws RPNException {
         String expression = "5 2 -";
 
-        IRPNCalculator calculator = CalculatorFactory.getInstance().createRPNCalculator();
+        RPNOperator calculator = CalculatorFactory.getInstance().createRPNCalculator();
         calculator.calcRpn(expression);
 
         String result = calculator.result();
@@ -70,7 +70,7 @@ public class RPNCalculatorImplTest {
     void testExample4() throws RPNException {
         String expression = "5 4 3 2";
 
-        IRPNCalculator calculator = CalculatorFactory.getInstance().createRPNCalculator();
+        RPNOperator calculator = CalculatorFactory.getInstance().createRPNCalculator();
         calculator.calcRpn(expression);
 
         String result = calculator.result();
@@ -105,7 +105,7 @@ public class RPNCalculatorImplTest {
     void testExample5() throws RPNException {
         String expression = "7 12 2 /";
 
-        IRPNCalculator calculator = CalculatorFactory.getInstance().createRPNCalculator();
+        RPNOperator calculator = CalculatorFactory.getInstance().createRPNCalculator();
         calculator.calcRpn(expression);
 
         String result = calculator.result();
@@ -132,7 +132,7 @@ public class RPNCalculatorImplTest {
     void testExample6() throws RPNException {
         String expression = "1 2 3 4 5";
 
-        IRPNCalculator calculator = CalculatorFactory.getInstance().createRPNCalculator();
+        RPNOperator calculator = CalculatorFactory.getInstance().createRPNCalculator();
         calculator.calcRpn(expression);
 
         String result = calculator.result();
@@ -159,7 +159,7 @@ public class RPNCalculatorImplTest {
     void testExample7() throws RPNException {
         String expression = "1 2 3 4 5";
 
-        IRPNCalculator calculator = CalculatorFactory.getInstance().createRPNCalculator();
+        RPNOperator calculator = CalculatorFactory.getInstance().createRPNCalculator();
         calculator.calcRpn(expression);
 
         String result = calculator.result();
@@ -178,7 +178,7 @@ public class RPNCalculatorImplTest {
     void testExample8() {
         String expression = "1 2 3 * 5 + * * 6 5";
 
-        IRPNCalculator calculator = CalculatorFactory.getInstance().createRPNCalculator();
+        RPNOperator calculator = CalculatorFactory.getInstance().createRPNCalculator();
         try {
             calculator.calcRpn(expression);
         } catch (RPNException e) {
