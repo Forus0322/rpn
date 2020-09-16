@@ -6,6 +6,7 @@ import java.util.List;
 import com.forus.rpn.calc.ICalculator;
 import com.forus.rpn.calc.RPNOperator;
 import com.forus.rpn.exception.OperationException;
+import com.forus.rpn.exception.OperationUndefinedException;
 import com.forus.rpn.exception.ParamException;
 import com.forus.rpn.exception.RPNException;
 import com.forus.rpn.utils.CalculatorUtils;
@@ -131,6 +132,8 @@ class RPNOperatorImpl extends RPNOperator implements ICalculator {
                             "Operator " + operator + " (position: " + position + "): insucient parameters");
                 } catch (ParamException e) {
                     throw new RPNException(e.getMessage());
+                } catch (OperationUndefinedException e) {
+                    throw new RPNException("Operator '" + e.getMessage() + "' is undefined!");
                 }
             }
             position++;
@@ -160,7 +163,7 @@ class RPNOperatorImpl extends RPNOperator implements ICalculator {
         return CalculatorUtils.display(model.getNumStack());
     }
 
-    private void calc(String operator) throws OperationException, ParamException {
+    private void calc(String operator) throws OperationException, ParamException, OperationUndefinedException {
         switch (operator) {
             case Constants.Operation.ADDITION:
                 addition();
@@ -184,7 +187,7 @@ class RPNOperatorImpl extends RPNOperator implements ICalculator {
                 clear();
                 break;
             default:
-                break;
+                throw new OperationUndefinedException(operator);
         }
     }
 
