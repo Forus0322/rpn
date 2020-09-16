@@ -1,6 +1,5 @@
 package com.forus.rpn.calc;
 
-import com.forus.rpn.exception.ParamException;
 import com.forus.rpn.exception.RPNException;
 
 /**
