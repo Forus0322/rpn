@@ -32,7 +32,7 @@ class RPNOperatorImpl extends RPNOperator implements ICalculator {
 
             logHistory(n, m);
         } else {
-            throw new OperationException("+");
+            throw new OperationException(Constants.Operation.ADDITION);
         }
     }
 
@@ -51,7 +51,7 @@ class RPNOperatorImpl extends RPNOperator implements ICalculator {
 
             logHistory(n, m);
         } else {
-            throw new OperationException("-");
+            throw new OperationException(Constants.Operation.SUBTRACTION);
         }
     }
 
@@ -70,7 +70,7 @@ class RPNOperatorImpl extends RPNOperator implements ICalculator {
 
             logHistory(n, m);
         } else {
-            throw new OperationException("*");
+            throw new OperationException(Constants.Operation.MULTIPLICATION);
         }
     }
 
@@ -92,7 +92,7 @@ class RPNOperatorImpl extends RPNOperator implements ICalculator {
                 throw new ParamException("The denominator can't be 0.");
             }
         } else {
-            throw new OperationException("/");
+            throw new OperationException(Constants.Operation.DIVISION);
         }
     }
 
@@ -109,7 +109,7 @@ class RPNOperatorImpl extends RPNOperator implements ICalculator {
 
             logHistory(n);
         } else {
-            throw new OperationException("sqrt");
+            throw new OperationException(Constants.Operation.SQRT);
         }
     }
 
@@ -142,9 +142,9 @@ class RPNOperatorImpl extends RPNOperator implements ICalculator {
         if (model.getNumStack().size() > 0) {
             model.getNumStack().pop();
             if (model.getHistoryStack().size() > 0) {
-                List<Double> last = model.getHistoryStack().pop();
+                List<Double> previous = model.getHistoryStack().pop();
                 // Collections.reverse(last);
-                model.getNumStack().addAll(last);
+                model.getNumStack().addAll(previous);
             }
         }
     }
