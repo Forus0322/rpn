@@ -4,11 +4,12 @@ import java.util.Collections;
 import java.util.List;
 
 import com.forus.rpn.calc.ICalculator;
-import com.forus.rpn.calc.RPNOperator;
+import com.forus.rpn.calc.RPNCalculator;
 import com.forus.rpn.exception.OperationException;
 import com.forus.rpn.exception.OperationUndefinedException;
 import com.forus.rpn.exception.ParamException;
 import com.forus.rpn.exception.RPNException;
+import com.forus.rpn.model.RpnModel;
 import com.forus.rpn.utils.CalculatorUtils;
 import com.forus.rpn.utils.Constants;
 import com.google.common.collect.Lists;
@@ -16,7 +17,9 @@ import com.google.common.collect.Lists;
 /**
  * RPN计算器实现类，不对外暴露，仅通过RPNOperator使用
  */
-class RPNOperatorImpl extends RPNOperator implements ICalculator {
+class RPNCalculatorImpl implements ICalculator, RPNCalculator {
+
+    protected RpnModel model = new RpnModel();
 
     @Override
     public double addition(double n, double m) {

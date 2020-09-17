@@ -2,7 +2,7 @@ package com.forus.rpn;
 
 import java.util.Scanner;
 
-import com.forus.rpn.calc.RPNOperator;
+import com.forus.rpn.calc.RPNCalculator;
 import com.forus.rpn.calc.impl.CalculatorFactory;
 import com.forus.rpn.exception.RPNException;
 
@@ -10,7 +10,7 @@ public final class App {
 
     private App() {
 
-        RPNOperator calculator = CalculatorFactory.getInstance().createRPNCalculator();
+        RPNCalculator calculator = CalculatorFactory.getInstance().createRPNCalculator();
         Scanner scanner = new Scanner(System.in);
 
         boolean flag = true;

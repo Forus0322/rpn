@@ -1,6 +1,6 @@
 package com.forus.rpn.calc.impl;
 
-import com.forus.rpn.calc.RPNOperator;
+import com.forus.rpn.calc.RPNCalculator;
 
 /**
  * 通过工厂模式，获取RPN计算器实例
@@ -9,8 +9,8 @@ public final class CalculatorFactory {
 
     private volatile static CalculatorFactory factory;
 
-    public RPNOperator createRPNCalculator() {
-        return new RPNOperatorImpl();
+    public RPNCalculator createRPNCalculator() {
+        return new RPNCalculatorImpl();
     }
 
     private CalculatorFactory() {
